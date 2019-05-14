@@ -14,8 +14,8 @@ class BlogController extends AbstractController
      */
     public function index()
     {
-        return new Response(
-            '<html><body>Blog Index</body></html>'
-        );
+        return $this->render('blog/index.html.twig', [
+                'owner' => 'Thomas',
+        ]);
     }
 }
