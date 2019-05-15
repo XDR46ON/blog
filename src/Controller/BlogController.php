@@ -27,7 +27,6 @@ class BlogController extends AbstractController
     public function show($slug) :Response
     {
         $slug = ucwords(preg_replace('/-/', " ", $slug));
-        // $slug = preg_replace('/-/', " ", $slug);
 
         return $this->render('blog/show.html.twig', [
                 'slug' => '$slug'
