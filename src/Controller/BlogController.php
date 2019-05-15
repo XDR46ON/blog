@@ -29,7 +29,7 @@ class BlogController extends AbstractController
         $slug = ucwords(preg_replace('/-/', " ", $slug));
 
         return $this->render('blog/show.html.twig', [
-                'slug' => '$slug'
+                'slug' => $slug
         ]);
     }
 
