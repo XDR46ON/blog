@@ -18,4 +18,19 @@ class BlogController extends AbstractController
                 'owner' => 'Thomas',
         ]);
     }
+
+    /**
+     * @param $slug
+     * @return Response
+     *  @Route("/blog/show/{slug<^[a-z0-9-]+$>?Article Sans Titre}", name="blog_show")
+     */
+    public function show($slug) :Response
+    {
+        $slug = ucwords(preg_replace('/-/', " ", $slug));
+
+        return $this->render('blog/show.html.twig', [
+                'slug' => '$slug'
+        ]);
+    }
+
 }
