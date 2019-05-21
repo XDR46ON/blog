@@ -90,13 +90,13 @@ class BlogController extends AbstractController
 
         if (!$articles) {
             throw $this->createNotFoundException(
-                'No articles found for ' . $categoryName . ' in article\'s table'
+                'No articles found for ' . $category->getName() . ' in article\'s table'
             );
         }
         return $this->render(
             'blog/category.html.twig',
             [
-                'category' => $categoryName,
+                'category' => $category,
                 'articles' => $articles
             ]
         );
