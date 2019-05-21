@@ -14,7 +14,7 @@ class BlogController extends AbstractController
     /**
      * Show all row from article's entity
      *
-     * @Route("/blog", name="blog_index")
+     * @Route("/blog", name="app_index")
      * @return Response A response instance
      */
     public function index(): Response
@@ -41,7 +41,7 @@ class BlogController extends AbstractController
      * @param string $slug 
      *
      * @Route("/{slug<^[a-z0-9-]+$>}",
-     *     defaults={"slug" = null},
+     *     defaults={"slug"},
      *     name="blog_show")
      *  @return Response 
      */
@@ -74,23 +74,18 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @param string $categoryName
+     * @param Category
      * @return Response
-     * @Route("blog/category/{categoryName}", name="blog_category")
+     * @Route("blog/category/{name}", name="blog_category")
      */
-    public function showByCategory(string $categoryName) :Response
+    public function showByCategory(Category $category) :Response
     {
-        $category = $this->getDoctrine()
-            ->getRepository(Category::class)
-            ->findOneByName($categoryName);
         if (!$category) {
             throw $this->createNotFoundException(
                 'Category not found in category\'s table'
             );
         }
-        $articles = $this->getDoctrine()
-            ->getRepository(Article::class)
-            ->findBy(['category'=>$category->getId()], ['id' => 'DESC'], 3);
+        $articles = $category->getArticles();
 
 
         if (!$articles) {
