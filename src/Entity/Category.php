@@ -52,7 +52,7 @@ class Category
     /**
     * @return Collection|Article[]
     */
-    public function getArticles(): Collection
+    public function getArticles(): ArrayCollection
     {
         return $this->articles;
     }
