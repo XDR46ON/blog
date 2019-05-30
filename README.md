@@ -1,1 +1,1 @@
-blog
+Symfony training
