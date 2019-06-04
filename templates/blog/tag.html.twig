@@ -1,0 +1,16 @@
+{# blog/tag #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ tag.name }}</h1>
+        <ul class="list-group mb-4">
+        {% for article in articles %}
+            <li class="list-group-item">
+                <a href="{{ path('article_details', {id: article.id }) }}">{{ article.title }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+        <a href="{{ path('app_index')}}">Back to homepage</a>
+    </div>
+{% endblock %}
